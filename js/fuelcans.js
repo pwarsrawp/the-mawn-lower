@@ -4,7 +4,7 @@ class FuelCan {
       this.left = 1200;
       this.top = Math.floor(Math.random() * 600 - 20);
       this.element = document.createElement("img");
-      this.element.src = "/images/fuel.png";
+      this.element.src = "./images/fuel.png";
       this.element.style.position = "absolute";
       this.element.style.width = `100px`;
       this.element.style.height = `75px`;
