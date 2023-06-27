@@ -12,7 +12,7 @@ class Game {
       this.fuelcans = [];
       this.score = 0;
       this.lives = 3;
-      this.fuelvalue = 5;
+      this.fuelvalue = 10;
       this.gameIsOver = false;
       this.interval
     }
@@ -25,9 +25,9 @@ class Game {
       this.gameScreen.style.display = "block";
       this.gameLoop();
       this.interval = setInterval(() => {
-        this.fuelvalue--
+        this.fuelvalue -= 1
         console.log(this.fuelvalue)
-      }, 4000);
+      }, 2000);
 
     }
   
@@ -77,8 +77,8 @@ class Game {
         mole.move();
   
         if (this.player.didCollide(mole)) {
-          mole.element.src = "/images/blood.png";
-          this.score += 10;
+          mole.element.src = "./images/blood.png";
+          this.score += 1;
           document.getElementById("score-value").innerText = this.score;
         }
         else if (mole.left < -100) {
@@ -95,7 +95,7 @@ class Game {
         if (this.player.didCollide(fuelcan)) {
           fuelcan.element.remove();
           this.fuelcans.splice(i, 1);
-          this.fuelvalue++;
+          this.fuelvalue += 1;
           if (this.fuelvalue === 1) {
             document.getElementById("fuel-bar-fill").style.width = '10%';
             document.getElementById("fuel-bar-value").innerText = '10%';

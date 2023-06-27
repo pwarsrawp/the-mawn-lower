@@ -109,7 +109,7 @@ body {
 
 #fuel-bar-fill {
   display: flex;
-  width: 10%;
+  width: 100%;
   height: 100%;
   background: #ff5722;
   transition: width 0.9s;
