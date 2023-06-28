@@ -60,7 +60,7 @@ class Game {
         }
         
         if (this.player.didCollide(rock)) {
-          const audioRock = new Audio('./audio/rock.wav');
+          const audioRock = new Audio('./audio/rock.mp3');
           audioRock.play()
           rock.element.remove();
           this.rocks.splice(i, 1);
@@ -125,6 +125,8 @@ class Game {
         fuelcan.move();
   
         if (this.player.didCollide(fuelcan)) {
+          const audioFuel = new Audio('./audio/fuel.mp3');
+          audioFuel.play()
           fuelcan.element.remove();
           this.fuelcans.splice(i, 1);
           this.fuelvalue += 1;
