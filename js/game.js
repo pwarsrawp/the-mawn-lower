@@ -30,7 +30,7 @@ class Game {
         document.getElementById("fuel-bar-fill").style.width = `${this.fuelvalue*10}%`;
         document.getElementById("fuel-bar-value").innerText = `${this.fuelvalue*10}%`;        
         console.log(this.fuelvalue)
-      }, 2000);
+      }, 3000);
 
     }
   
@@ -46,12 +46,22 @@ class Game {
       this.player.move();  
       
       
-
+      // ROCKS MANAGEMENT
       for (let i = 0; i < this.rocks.length; i++) {
         const rock = this.rocks[i];
-        rock.move();
-        // ROCKS MANAGEMENT
+        if(this.score === 0 || this.score === 1) {
+          rock.move1()
+        }
+        else if (this.score === 2 || this.score === 3) {
+          rock.move2()
+        }
+        else if (this.score >= 4) {
+          rock.move3()
+        }
+        
         if (this.player.didCollide(rock)) {
+          const audioRock = new Audio('./audio/rock.wav');
+          audioRock.play()
           rock.element.remove();
           this.rocks.splice(i, 1);
           this.lives--;
@@ -80,6 +90,8 @@ class Game {
         mole.move();
   
         if (this.player.didCollide(mole)) {
+          const audioMole = new Audio('./audio/mole.wav');
+          audioMole.play()
           mole.element.remove()
           this.moles.splice(i, 1);
           this.bloodstains.push(new Blood(this.gameScreen,this.player.left, this.player.top))
@@ -95,12 +107,12 @@ class Game {
       // BLOODSTAIN MANAGEMENT
       for (let i = 0; i < this.bloodstains.length; i++) {
         const blood = this.bloodstains[i];
-        console.log(this.bloodstains)
         blood.move();
 
-        if(this.blood < -100) {
+        if (blood.left < -100) {
           blood.element.remove();
           this.bloodstains.splice(i, 1);
+          i--;
         } 
       }
       
@@ -176,23 +188,62 @@ class Game {
         this.endGame();
       } 
   
-      if (Math.random() > 0.98 && this.rocks.length < 1) {
-        this.rocks.push(new Rock(this.gameScreen));
+      if (this.score < 2) {
+        if (Math.random() > 0.98 && this.rocks.length < 1) {
+          this.rocks.push(new Rock(this.gameScreen));
+        }
+        if (Math.random() > 0.98 && this.moles.length < 1) {
+          this.moles.push(new Mole(this.gameScreen));
+        }
+        if (Math.random() > 0.99 && this.fuelcans.length < 1) {
+          this.fuelcans.push(new FuelCan(this.gameScreen));
+        }
       }
-      if (Math.random() > 0.98 && this.moles.length < 1) {
-        this.moles.push(new Mole(this.gameScreen));
+      else if (this.score >= 2 && this.score <=4) {
+        if (Math.random() > 0.98 && this.rocks.length < 2) {
+          this.rocks.push(new Rock(this.gameScreen));
+        }
+        if (Math.random() > 0.98 && this.moles.length < 1) {
+          this.moles.push(new Mole(this.gameScreen));
+        }
+        if (Math.random() > 0.99 && this.fuelcans.length < 1) {
+          this.fuelcans.push(new FuelCan(this.gameScreen));
+        }
       }
-      if (Math.random() > 0.99 && this.fuelcans.length < 1) {
-        this.fuelcans.push(new FuelCan(this.gameScreen));
-      }
+      else if (this.score > 4 && this.score <= 6) {
+        if (Math.random() > 0.96 && this.rocks.length < 2) {
+          this.rocks.push(new Rock(this.gameScreen));
+        }
+        if (Math.random() > 0.98 && this.moles.length < 1) {
+          this.moles.push(new Mole(this.gameScreen));
+        }
+        if (Math.random() > 0.99 && this.fuelcans.length < 1) {
+          this.fuelcans.push(new FuelCan(this.gameScreen));
+        }
+      }  
     }
+      
 
 
   
     endGame() {
+      let topscore = [{name: '1st', score: '25'}, {name: '2nd', score: '22'}, {name: '3rd', score: '15'}];
       this.player.element.remove();
       this.rocks.forEach((rock) => rock.element.remove());
       document.getElementById("lives-container").innerHTML = 0;
+      document.getElementById("your-score").innerHTML = this.score;
+      if (this.score > topscore[0].score) {
+        topscore[0].score = this.score;
+      }
+      if (this.score > topscore[1].score && this.score < topscore[0].score) {
+        topscore[1].score = this.score;
+      }
+      if (this.score > topscore[2].score || this.score < topscore[1].score) {
+        topscore[2].score = this.score;
+      }
+      document.getElementById("top1").innerHTML = `${topscore[0].name} - ${topscore[0].score}`;
+      document.getElementById("top2").innerHTML = `${topscore[1].name} - ${topscore[1].score}`;
+      document.getElementById("top3").innerHTML = `${topscore[2].name} - ${topscore[2].score}`;
       this.gameIsOver = true;
       clearInterval(this.interval)
   
@@ -202,37 +253,15 @@ class Game {
     }
   }
 
-
-
 /*
-  update() {
-    this.player.move();
-
-    for (let i = 0; i < this.rocks.length; i++) {
-      const obstacle = this.rocks[i];
-      obstacle.move();
-
-      if (this.player.didCollide(obstacle)) {
-        obstacle.element.remove();
-        this.rocks.splice(i, 1);
-        this.lives--;
-        document.getElementById("lives").innerHTML--;
-        i--;
-      }
-      else if (obstacle.left < -100) {
-        obstacle.element.remove();
-        this.rocks.splice(i, 1);
-        i--;
-      }
-    }      
-     
-    if (this.lives === 0) {
-      this.endGame();
-    }
-
-    if (Math.random() > 0.98 && this.rocks.length < 1) {
-      this.rocks.push(new Obstacle(this.gameScreen));
-    }
+  if (Math.random() > 0.98 && this.rocks.length < 1) {
+    this.rocks.push(new Rock(this.gameScreen));
+  }
+  if (Math.random() > 0.98 && this.moles.length < 1) {
+    this.moles.push(new Mole(this.gameScreen));
+  }
+  if (Math.random() > 0.99 && this.fuelcans.length < 1) {
+    this.fuelcans.push(new FuelCan(this.gameScreen));
   }
 
-*/
+  */

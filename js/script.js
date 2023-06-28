@@ -1,12 +1,19 @@
 window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
+  const audioButton = document.getElementById("audio-button");
   let game;
-  //const audio = new Audio('./audio/audio1.mp4');
-  //audio.play();
+  const musicAudio = new Audio('./audio/music.wav');
+  const startAudio = new Audio('./audio/mower.wav')
+  
+
+  audioButton.addEventListener("click", function () {
+    musicAudio.play();
+  });
 
   startButton.addEventListener("click", function () {
     startGame();
+    startAudio.play()
   });
 
   function startGame() {

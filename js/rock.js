@@ -18,8 +18,24 @@ class Rock {
       this.element.style.top = `${this.top}px`;
     }
   
-    move() {
+    move1() {
       this.left -= 2;
+      this.updatePosition();
+    }
+    move2() {
+      this.left -= 3;
+      this.updatePosition();
+    }
+    move3() {
+      this.left -= 4;
+      this.updatePosition();
+    }
+    move4() {
+      this.left -= 5;
+      this.updatePosition();
+    }
+    move5() {
+      this.left -= 6;
       this.updatePosition();
     }
   }
