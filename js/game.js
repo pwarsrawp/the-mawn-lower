@@ -10,6 +10,7 @@ class Game {
       this.rocks = [];
       this.moles = [];
       this.fuelcans = [];
+      this.bloodstains = [];
       this.score = 0;
       this.lives = 3;
       this.fuelvalue = 10;
@@ -25,7 +26,9 @@ class Game {
       this.gameScreen.style.display = "block";
       this.gameLoop();
       this.interval = setInterval(() => {
-        this.fuelvalue -= 1
+        this.fuelvalue--
+        document.getElementById("fuel-bar-fill").style.width = `${this.fuelvalue*10}%`;
+        document.getElementById("fuel-bar-value").innerText = `${this.fuelvalue*10}%`;        
         console.log(this.fuelvalue)
       }, 2000);
 
@@ -77,8 +80,10 @@ class Game {
         mole.move();
   
         if (this.player.didCollide(mole)) {
-          mole.element.src = "./images/blood.png";
-          this.score += 1;
+          mole.element.remove()
+          this.moles.splice(i, 1);
+          this.bloodstains.push(new Blood(this.gameScreen,this.player.left, this.player.top))
+          this.score ++;
           document.getElementById("score-value").innerText = this.score;
         }
         else if (mole.left < -100) {
@@ -87,6 +92,21 @@ class Game {
           i--;
         }
       }
+      // BLOODSTAIN MANAGEMENT
+      for (let i = 0; i < this.bloodstains.length; i++) {
+        const blood = this.bloodstains[i];
+        console.log(this.bloodstains)
+        blood.move();
+
+        if(this.blood < -100) {
+          blood.element.remove();
+          this.bloodstains.splice(i, 1);
+        } 
+      }
+      
+      
+
+      
       // FUELCAN MANAGEMENT
       for (let i = 0; i < this.fuelcans.length; i++) {
         const fuelcan = this.fuelcans[i];

@@ -2,6 +2,8 @@ window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
   let game;
+  //const audio = new Audio('./audio/audio1.mp4');
+  //audio.play();
 
   startButton.addEventListener("click", function () {
     startGame();
