@@ -24,7 +24,7 @@ The Mawn Lower is a classic style game where the goal is to run over as many mol
 - JavaScript
 - DOM Manipulation
 
-### Data structure
+## Data structure
 
 1. **Game**: Main file controlling screens, player and object behavior and end of game.
 
@@ -60,7 +60,7 @@ The Mawn Lower is a classic style game where the goal is to run over as many mol
      - `move`: Controls speed and direction of movement.
      - `updatePosition`: Updates the Fuel cans position.
 
-### Screens
+## Screens
 
 - **Start Screen**: This is the screen shown on load. Pressing the Go! button will start the game loading the Game Screen.
 
