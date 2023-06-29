@@ -52,16 +52,16 @@ class Game {
         if(this.score < 4) {
           rock.move1()
         }
-        else if (this.score >= 4 || this.score < 7) {
+        else if (this.score >= 4 && this.score < 7) {
           rock.move2()
         }
-        else if (this.score >= 7 || this.score < 10) {
+        else if (this.score >= 7 && this.score < 10) {
           rock.move3()
         }
-        else if (this.score >= 10 || this.score < 13) {
+        else if (this.score >= 10 && this.score < 13) {
           rock.move4()
         }
-        else if (this.score >= 13 || this.score < 16) {
+        else if (this.score >= 13) {
           rock.move5()
         }
         
@@ -196,7 +196,7 @@ class Game {
         this.endGame();
       } 
   
-      if (this.score < 2) {
+      if (this.score < 4) {
         if (Math.random() > 0.98 && this.rocks.length < 1) {
           this.rocks.push(new Rock(this.gameScreen));
         }
@@ -207,7 +207,7 @@ class Game {
           this.fuelcans.push(new FuelCan(this.gameScreen));
         }
       }
-      else if (this.score >= 2 && this.score <=4) {
+      else if (this.score >= 4 && this.score < 10) {
         if (Math.random() > 0.98 && this.rocks.length < 2) {
           this.rocks.push(new Rock(this.gameScreen));
         }
@@ -218,7 +218,7 @@ class Game {
           this.fuelcans.push(new FuelCan(this.gameScreen));
         }
       }
-      else if (this.score > 4 && this.score <= 6) {
+      else if (this.score >= 10 && this.score < 13) {
         if (Math.random() > 0.96 && this.rocks.length < 2) {
           this.rocks.push(new Rock(this.gameScreen));
         }
@@ -229,7 +229,7 @@ class Game {
           this.fuelcans.push(new FuelCan(this.gameScreen));
         }
       }
-      else if (this.score > 6) {
+      else if (this.score >= 13) {
         if (Math.random() > 0.95 && this.rocks.length < 2) {
           this.rocks.push(new Rock(this.gameScreen));
         }
