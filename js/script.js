@@ -5,6 +5,8 @@ window.onload = function () {
   let game;
   const musicAudio = new Audio('./audio/music.wav');
   const startAudio = new Audio('./audio/mower.mp3')
+
+  
   
 
   audioButton.addEventListener("click", function () {
@@ -13,7 +15,7 @@ window.onload = function () {
 
   startButton.addEventListener("click", function () {
     startGame();
-    startAudio.play()
+    startAudio.play();
     musicAudio.play();
   });
 

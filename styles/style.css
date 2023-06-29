@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat&family=Rock+Salt&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat&family=Rock+Salt&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
 body {
   padding: 0;
   margin: 0;
-  font-family: Montserrat;
-  font-size: 20px;
+  font-family: 'Amatic SC', cursive;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 #game-intro {
@@ -22,9 +24,12 @@ body {
 }
 
 #game-intro h1 {
-  margin: 150px 0 50px 0;
-  color: #41ad36;
-  font-family: 'Rock Salt', cursive;
+  margin: 80px 0 50px 0;
+  /*color: #41ad36;*/
+  color: #131313;
+  /*font-family: 'Rock Salt', cursive;*/
+  font-family: 'Amatic SC', cursive;
+  font-size: 3em;
 }
 
 #game-intro p {
@@ -204,19 +209,24 @@ body {
 }
 
 #game-end h1 {
-  margin: 150px 0 50px 0;
-  color: #41ad36;
-  font-family: 'Rock Salt', cursive;
+  margin: 80px 0 50px 0;
+  color: #131313;
+  font-size: 2em;
 }
 
-#game-end p {
-  max-width: 800px;
+#game-end h2 {
+  margin: 10px 0 10px 0;
+  color: #131313;
+  font-size: 1.4em;
 }
 
 #game-end ul {
   list-style: none;
   padding: 0 0;
+  margin: 10px 0 10px 0;
+  font-size: 1.2em;
 }
+
 .logo-img {
   width: 250px;
   animation: jump 2s ease infinite
@@ -224,7 +234,9 @@ body {
 
 #start-button,
 #restart-button {
-  font-size: 30px;
+  font-size: 1.2em;
+  font-weight: 700;
+  font-family: 'Amatic SC', cursive;
   background-color: #6cc744;
   color: #fff;
   padding: 10px 30px;
@@ -232,6 +244,10 @@ body {
   box-shadow: 0;
   border-radius: 20px;
   margin: 40px 0;
+}
+
+#restart-button {
+  margin: 20px 0;
 }
 
 #start-button:hover,
