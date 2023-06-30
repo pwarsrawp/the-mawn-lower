@@ -1,33 +1,66 @@
 window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
-  const audioButton = document.getElementById("audio-button");
+  const audioMusicButton = document.getElementById("music-button");
+  const audioFxButton = document.getElementById("fx-button");
   let game;
   const musicAudio = new Audio('./audio/music.wav');
-  const startAudio = new Audio('./audio/mower.mp3');
 
   const nameInputScreen = document.getElementById("input-popup");
   const nameInputOkButton = document.getElementById("input-ok-button");
   const nameInputBackButton = document.getElementById("input-back-button");
   const inputName = document.getElementById("input-name");
-  let playerName = ""
+  let playerName = "";
+  let musicOn = true;
+  let fxOn = true;
 
   
   
 
-  audioButton.addEventListener("click", function () {
-    musicAudio.play();
+  // MUSIC ON/OFF
+  audioMusicButton.addEventListener("click", function () {
+    if (audioMusicButton.classList.contains("audio-button-on")) {
+      audioMusicButton.classList.remove("audio-button-on");
+      musicOn = false;
+    }
+    else {
+      audioMusicButton.classList.add("audio-button-on");
+      musicOn = true;
+    }
+    
   });
 
+  
+  // SOUND FX ON/OFF
+  audioFxButton.addEventListener("click", function () {
+    if (audioFxButton.classList.contains("audio-button-on")) {
+      audioFxButton.classList.remove("audio-button-on");
+      fxOn = false;
+    }
+    else {
+      audioFxButton.classList.add("audio-button-on");
+      fxOn = true;
+    }
+    
+  });
+
+  
+  
+  
+  
   startButton.addEventListener("click", function () {
     nameInputScreen.style.display = "block";
   });
 
   nameInputOkButton.addEventListener("click", function () {
-    startGame();
-    startAudio.play();
-    musicAudio.play();
-    playerName = inputName.value
+    if (musicOn) {
+      startGame();
+      musicAudio.play();
+    }
+    else {
+      startGame();
+    }
+    playerName = inputName.value;
   });
 
   nameInputBackButton.addEventListener("click", function () {

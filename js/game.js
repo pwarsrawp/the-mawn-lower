@@ -17,7 +17,7 @@ class Game {
       this.fuelvalue = 10;
       this.gameIsOver = false;
       this.interval
-      this.playerName = inputName.value
+      this.playerName = inputName.value      
     }
   
     start() {
@@ -45,8 +45,20 @@ class Game {
     }
   
     update() {
-      this.player.move();  
+      this.player.move();
+
+      //AUDIO ON/OFF MANAGEMENT
+      const audioFxButton = document.getElementById("fx-button");      
+      let fxOn;
       
+      
+      if (audioFxButton.classList.contains("audio-button-on")) {
+        fxOn = true;
+      }
+      else {
+        fxOn = false;
+      }
+
       
       // ROCKS MANAGEMENT
       for (let i = 0; i < this.rocks.length; i++) {
@@ -69,7 +81,7 @@ class Game {
         
         if (this.player.didCollide(rock)) {
           const audioRock = new Audio('./audio/rock.mp3');
-          audioRock.play()
+          if (fxOn) {audioRock.play()};          
           rock.element.remove();
           this.rocks.splice(i, 1);
           this.lives--;
@@ -99,7 +111,7 @@ class Game {
   
         if (this.player.didCollide(mole)) {
           const audioMole = new Audio('./audio/mole.wav');
-          audioMole.play()
+          if (fxOn) {audioMole.play()};
           mole.element.remove()
           this.moles.splice(i, 1);
           this.bloodstains.push(new Blood(this.gameScreen,this.player.left, this.player.top))
@@ -134,7 +146,7 @@ class Game {
   
         if (this.player.didCollide(fuelcan)) {
           const audioFuel = new Audio('./audio/fuel.mp3');
-          audioFuel.play()
+          if (fxOn) {audioFuel.play()};
           fuelcan.element.remove();
           this.fuelcans.splice(i, 1);
           this.fuelvalue += 1;
