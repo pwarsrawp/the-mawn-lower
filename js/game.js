@@ -4,6 +4,7 @@ class Game {
       this.gameScreen = document.getElementById("game-screen");
       this.gameEndScreen = document.getElementById("game-end");
       this.gameContainer = document.getElementById("game-container");
+      const inputName = document.getElementById("input-name");
       this.player = new Player(this.gameScreen, 30, 255);
       this.height = 600;
       this.width = 1200;
@@ -16,6 +17,7 @@ class Game {
       this.fuelvalue = 10;
       this.gameIsOver = false;
       this.interval
+      this.playerName = inputName.value
     }
   
     start() {
@@ -251,7 +253,7 @@ class Game {
 
   
     endGame() {
-      let topscore = [{name: '1st', score: '25'}, {name: '2nd', score: '22'}, {name: '3rd', score: '15'}];
+      let topscore = [{name: 'Ciriaco', score: 10}, {name: 'Eustaquio', score: 3}, {name: 'Ceferino', score: 1}];
       this.player.element.remove();
       this.rocks.forEach((rock) => rock.element.remove());
       document.getElementById("lives-container").innerHTML = 0;
@@ -261,12 +263,15 @@ class Game {
       }
       if (this.score > topscore[0].score) {
         topscore[0].score = this.score;
+        topscore[0].name = this.playerName;
       }
       if (this.score > topscore[1].score && this.score < topscore[0].score) {
         topscore[1].score = this.score;
+        topscore[1].name = this.playerName;
       }
       if (this.score > topscore[2].score && this.score < topscore[1].score) {
         topscore[2].score = this.score;
+        topscore[2].name = this.playerName;
       }
       document.getElementById("top1").innerHTML = `${topscore[0].name} - ${topscore[0].score}`;
       document.getElementById("top2").innerHTML = `${topscore[1].name} - ${topscore[1].score}`;

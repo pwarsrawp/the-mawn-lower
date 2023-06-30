@@ -1,5 +1,5 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat&family=Rock+Salt&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Montserrat&display=swap');
 body {
   padding: 0;
   margin: 0;
@@ -46,6 +46,64 @@ body {
   width: 70px;
   background: transparent;
 }
+
+
+
+
+
+
+#input-popup {
+  display: none;
+  position: absolute;
+  top: 230px;
+  width: 400px;
+  height: 280px;
+  background-color: #41ad36;
+  border: 16px solid #6cc744
+}
+
+#input-popup h3 {
+  color: black;
+  text-align: center;
+  font-size: 28px;
+}
+
+#input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#input-name {
+  width: 250px;
+  height: 35px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid #6cc744;
+}
+
+#input-name:focus {
+  box-shadow: 0 0 3px #1670BE;
+  border: 2px solid #6cc744;
+}
+
+#input-button-container button {
+  margin-top: 15px;
+  width: 150px;
+  height: 50px;
+  background-color: #6cc744;
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+
+
+
+
+
 
 #game-container {
   display: none;
@@ -215,7 +273,7 @@ body {
 }
 
 #game-end h2 {
-  margin: 10px 0 10px 0;
+  margin: 20px 0 20px 0;
   color: #131313;
   font-size: 1.4em;
 }
@@ -225,6 +283,13 @@ body {
   padding: 0 0;
   margin: 10px 0 10px 0;
   font-size: 1.2em;
+}
+
+#leaderboard-container {
+  background-color: #41ad36;
+  border: 16px solid #6cc744;
+  width: 300px;
+  height: 300px;
 }
 
 .logo-img {

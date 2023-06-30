@@ -4,7 +4,13 @@ window.onload = function () {
   const audioButton = document.getElementById("audio-button");
   let game;
   const musicAudio = new Audio('./audio/music.wav');
-  const startAudio = new Audio('./audio/mower.mp3')
+  const startAudio = new Audio('./audio/mower.mp3');
+
+  const nameInputScreen = document.getElementById("input-popup");
+  const nameInputOkButton = document.getElementById("input-ok-button");
+  const nameInputBackButton = document.getElementById("input-back-button");
+  const inputName = document.getElementById("input-name");
+  let playerName = ""
 
   
   
@@ -14,9 +20,18 @@ window.onload = function () {
   });
 
   startButton.addEventListener("click", function () {
+    nameInputScreen.style.display = "block";
+  });
+
+  nameInputOkButton.addEventListener("click", function () {
     startGame();
     startAudio.play();
     musicAudio.play();
+    playerName = inputName.value
+  });
+
+  nameInputBackButton.addEventListener("click", function () {
+    nameInputScreen.style.display = "none";
   });
 
   function startGame() {
