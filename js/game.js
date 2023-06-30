@@ -17,7 +17,13 @@ class Game {
       this.fuelvalue = 10;
       this.gameIsOver = false;
       this.interval
-      this.playerName = inputName.value      
+      if (inputName.value.length === 0) {
+        this.playerName = "unnamed"
+      }
+      else {
+        this.playerName = inputName.value 
+      }
+           
     }
   
     start() {
@@ -51,7 +57,6 @@ class Game {
       const audioFxButton = document.getElementById("fx-button");      
       let fxOn;
       
-      
       if (audioFxButton.classList.contains("audio-button-on")) {
         fxOn = true;
       }
@@ -63,16 +68,16 @@ class Game {
       // ROCKS MANAGEMENT
       for (let i = 0; i < this.rocks.length; i++) {
         const rock = this.rocks[i];
-        if(this.score < 4) {
+        if(this.score < 2) {
           rock.move1()
         }
-        else if (this.score >= 4 && this.score < 7) {
+        else if (this.score >= 2 && this.score < 5) {
           rock.move2()
         }
-        else if (this.score >= 7 && this.score < 10) {
+        else if (this.score >= 5 && this.score < 8) {
           rock.move3()
         }
-        else if (this.score >= 10 && this.score < 13) {
+        else if (this.score >= 8 && this.score < 11) {
           rock.move4()
         }
         else if (this.score >= 13) {
@@ -210,7 +215,7 @@ class Game {
         this.endGame();
       }
 
-      if (this.score === 5) {
+      if (this.score === 6) {
         this.endGame();
 
       }
@@ -270,7 +275,7 @@ class Game {
       this.rocks.forEach((rock) => rock.element.remove());
       document.getElementById("lives-container").innerHTML = 0;
       document.getElementById("your-score").innerHTML = this.score;
-      if (this.score === 5) {
+      if (this.score === 6) {
         document.getElementById("game-end-message").innerHTML = 'Level 1 Completed';
       }
       if (this.score > topscore[0].score) {
