@@ -1,6 +1,6 @@
 # The Mawn Lower
 
-[Click here to play the deployed game](https://pwarsrawp.github.io/The-Mawn-Lower/)
+[Deployment Link](https://pwarsrawp.github.io/The-Mawn-Lower/)
 
 ## Description
 

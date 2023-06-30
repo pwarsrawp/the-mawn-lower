@@ -194,8 +194,13 @@ class Game {
 
       if (this.fuelvalue === 0) {
         this.endGame();
-      } 
-  
+      }
+
+      if (this.score === 5) {
+        this.endGame();
+
+      }
+
       if (this.score < 4) {
         if (Math.random() > 0.98 && this.rocks.length < 1) {
           this.rocks.push(new Rock(this.gameScreen));
@@ -251,13 +256,16 @@ class Game {
       this.rocks.forEach((rock) => rock.element.remove());
       document.getElementById("lives-container").innerHTML = 0;
       document.getElementById("your-score").innerHTML = this.score;
+      if (this.score === 5) {
+        document.getElementById("game-end-message").innerHTML = 'Level 1 Completed';
+      }
       if (this.score > topscore[0].score) {
         topscore[0].score = this.score;
       }
       if (this.score > topscore[1].score && this.score < topscore[0].score) {
         topscore[1].score = this.score;
       }
-      if (this.score > topscore[2].score || this.score < topscore[1].score) {
+      if (this.score > topscore[2].score && this.score < topscore[1].score) {
         topscore[2].score = this.score;
       }
       document.getElementById("top1").innerHTML = `${topscore[0].name} - ${topscore[0].score}`;
@@ -270,6 +278,7 @@ class Game {
       this.gameContainer.style.display = "none";
       this.gameEndScreen.style.display = "flex";
     }
+
   }
 
 /*
